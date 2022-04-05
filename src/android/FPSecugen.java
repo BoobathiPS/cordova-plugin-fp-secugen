@@ -400,13 +400,13 @@ public class FPSecugen extends CordovaPlugin {
                 fingerInfo.ImpressionType = SGImpressionType.SG_IMPTYPE_LP;
                 fingerInfo.ViewNumber = 1;
                 Log.d("FP Image Quality", fingerInfo.ImageQuality + "");
-                //returnResult("FP Image Quality"+ fingerInfo.ImageQuality+":"+ QUALITY_VALUE,callbackContext);
+                returnResult("FP Image Quality"+ fingerInfo.ImageQuality+":"+ QUALITY_VALUE,callbackContext);
                 if (fingerInfo.ImageQuality >= QUALITY_VALUE) {
 
                     result = sgfplib.WSQGetEncodedImageSize(wsqImageOutSize,
                             SGWSQLib.BITRATE_5_TO_1, buffer, mImageWidth,
                             mImageHeight, encodePixelDepth, encodePPI);
-                    returnResult("result"+ result,callbackContext);
+                    //returnResult("result"+ result,callbackContext);
                     if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                         wsqImage = new byte[wsqImageOutSize[0]];
                         result = sgfplib.WSQEncode(wsqImage,
