@@ -382,8 +382,7 @@ public class FPSecugen extends CordovaPlugin {
         dwTimeEnd = System.currentTimeMillis();
         dwTimeElapsed = dwTimeEnd - dwTimeStart;
         debugMessage("getImageEx(10000,50) ret:" + result + " [" + dwTimeElapsed + "ms]" + NFIQString + "\n");
-        returnResult("Time elapsed:"+dwTimeElapsed,callbackContext);
-        int[] quality = new int[1];
+                int[] quality = new int[1];
         SGFingerInfo fingerInfo = new SGFingerInfo();
         int encodePixelDepth = 8;
         int encodePPI = 500;
@@ -394,7 +393,7 @@ public class FPSecugen extends CordovaPlugin {
 
         if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
             result = sgfplib.GetImageQuality(mImageWidth, mImageHeight, buffer, quality);
-
+            returnResult("result:"+result,callbackContext);
             if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                 fingerInfo.FingerNumber = SGFingerPosition.SG_FINGPOS_LI;
                 fingerInfo.ImageQuality = quality[0];
