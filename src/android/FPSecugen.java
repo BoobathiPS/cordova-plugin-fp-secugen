@@ -393,19 +393,20 @@ public class FPSecugen extends CordovaPlugin {
 
         if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
             result = sgfplib.GetImageQuality(mImageWidth, mImageHeight, buffer, quality);
-            returnResult("result:"+result,callbackContext);
+            
             if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                 fingerInfo.FingerNumber = SGFingerPosition.SG_FINGPOS_LI;
                 fingerInfo.ImageQuality = quality[0];
                 fingerInfo.ImpressionType = SGImpressionType.SG_IMPTYPE_LP;
                 fingerInfo.ViewNumber = 1;
                 Log.d("FP Image Quality", fingerInfo.ImageQuality + "");
+                //returnResult("FP Image Quality"+ fingerInfo.ImageQuality+":"+ QUALITY_VALUE,callbackContext);
                 if (fingerInfo.ImageQuality >= QUALITY_VALUE) {
 
                     result = sgfplib.WSQGetEncodedImageSize(wsqImageOutSize,
                             SGWSQLib.BITRATE_5_TO_1, buffer, mImageWidth,
                             mImageHeight, encodePixelDepth, encodePPI);
-
+                    //returnResult("result"+ result,callbackContext);
                     if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                         wsqImage = new byte[wsqImageOutSize[0]];
                         result = sgfplib.WSQEncode(wsqImage,
@@ -414,7 +415,7 @@ public class FPSecugen extends CordovaPlugin {
                                 encodePPI);
 
 //                        sgfplib.WS
-
+                        //returnResult("result"+ result,callbackContext);
                         if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                             //TODO send base64 image
                             Bitmap bitmap = this.toGrayscale(buffer);
@@ -430,6 +431,7 @@ public class FPSecugen extends CordovaPlugin {
                             byte[] byteArray = byteArrayOutputStream.toByteArray();
 
                             String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                            returnResult("encoded"+ encoded,callbackContext);
                             String wsqEncoded = Base64.encodeToString(wsqImage, Base64.DEFAULT);
 //                            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 //                            bos.write(buffer);
