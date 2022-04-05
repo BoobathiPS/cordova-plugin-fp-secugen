@@ -415,7 +415,7 @@ public class FPSecugen extends CordovaPlugin {
                                 encodePPI);
 
 //                        sgfplib.WS
-                        //returnResult("result"+ result,callbackContext);
+                        returnResult("result"+ result,callbackContext);
                         if (result == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                             //TODO send base64 image
                             Bitmap bitmap = this.toGrayscale(buffer);
@@ -431,7 +431,7 @@ public class FPSecugen extends CordovaPlugin {
                             byte[] byteArray = byteArrayOutputStream.toByteArray();
 
                             String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                            returnResult("encoded"+ encoded,callbackContext);
+                            //returnResult("encoded"+ encoded,callbackContext);
                             String wsqEncoded = Base64.encodeToString(wsqImage, Base64.DEFAULT);
 //                            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 //                            bos.write(buffer);
