@@ -353,8 +353,8 @@ public class FPSecugen extends CordovaPlugin {
         }
     }
 
-    public void returnResult(String message){
-                JSONObject json = new JSONObject();
+    public void returnResult(String message,final CallbackContext callbackContext){
+        JSONObject json = new JSONObject();
         try {
             json.put("message", message);
 
@@ -382,7 +382,7 @@ public class FPSecugen extends CordovaPlugin {
         dwTimeEnd = System.currentTimeMillis();
         dwTimeElapsed = dwTimeEnd - dwTimeStart;
         debugMessage("getImageEx(10000,50) ret:" + result + " [" + dwTimeElapsed + "ms]" + NFIQString + "\n");
-        returnResult("Time elapsed:"+dwTimeElapsed);
+        returnResult("Time elapsed:"+dwTimeElapsed,callbackContext);
         int[] quality = new int[1];
         SGFingerInfo fingerInfo = new SGFingerInfo();
         int encodePixelDepth = 8;
